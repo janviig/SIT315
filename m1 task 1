@@ -1,0 +1,36 @@
+/*
+ * code for m1 task 1.1
+ * by janvi gupta - 221220324
+ */
+
+
+#define trigPin 7
+#define led 8
+void setup() 
+{
+  Serial.begin(9600);
+  pinMode(led, OUTPUT);
+  pinMode(trigPin, OUTPUT);
+}
+void loop() 
+{
+  long duration, distance;
+  duration = pulseIn(trigPin, HIGH);
+  distance = (duration/2) / 29.1; //getting distance formula
+  Serial.println("distance will be printed below:");
+  if (distance < 120) //if the distance is less than 10cms
+  {
+    Serial.println("active");
+    //Serial.print(distance);
+    digitalWrite(led, HIGH);
+    delay(1000); // Wait for 1000 millisecond(s)
+    digitalWrite(led, LOW);
+    delay(1000); // Wait for 1000 millisecond(s)
+    Serial.println(distance);
+  }
+  else
+  {    
+    Serial.println("inactive");
+  } 
+
+}
